@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoopLearn: Mastering Programming Loops</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: #fff;
+            border: 2px solid #6e8efb;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background-color: #6e8efb;
+            color: white;
+        }
+        
+        .content-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #6e8efb;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f4ff;
+            padding-bottom: 0.5rem;
+        }
+        
+        h3 {
+            color: #a777e3;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background-color: #2d3a4b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        
+        .code-keyword {
+            color: #ff6b6b;
+        }
+        
+        .code-function {
+            color: #6e8efb;
+        }
+        
+        .code-value {
+            color: #a777e3;
+        }
+        
+        .code-comment {
+            color: #7f8c8d;
+        }
+        
+        .visualization {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .loop-output {
+            min-height: 100px;
+            background-color: #2d3a4b;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .exercise {
+            background-color: #f0f4ff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        input[type="text"] {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin: 0.5rem 0 1rem;
+        }
+        
+        .success {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #2d3a4b;
+            color: white;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">LoopLearn</div>
+        <div class="tagline">Master programming loops through interactive examples</div>
+    </header>
+    
+    <div class="container">
+        <div class="nav">
+            <button class="nav-btn active" data-target="intro">Introduction</button>
+            <button class="nav-btn" data-target="while">While Loops</button>
+            <button class="nav-btn" data-target="for">For Loops</button>
+            <button class="nav-btn" data-target="dowhile">Do-While Loops</button>
+            <button class="nav-btn" data-target="exercises">Practice Exercises</button>
+        </div>
+        
+        <div id="intro" class="content-section active">
+            <h2>Introduction to Loops</h2>
+            <p>Loops are one of the fundamental concepts in programming. They allow you to execute a block of code repeatedly, which makes your programs more efficient and powerful.</p>
+            
+            <div class="visualization">
+                <h3>Why Use Loops?</h3>
+                <p>Imagine you need to print numbers from 1 to 100. Without loops, you'd have to write 100 print statements. With loops, you can do this with just a few lines of code!</p>
+            </div>
+            
+            <h3>Types of Loops</h3>
+            <p>In most programming languages, you'll find these main types of loops:</p>
+            <ul>
+                <li><strong>While loops</strong> - Repeat while a condition is true</li>
+                <li><strong>For loops</strong> - Repeat for a specific number of times</li>
+                <li><strong>Do-while loops</strong> - Similar to while loops but execute at least once</li>
+            </ul>
+            
+            <div class="code-block">
+                <span class="code-comment">// Example: Printing numbers with a loop</span><br>
+                <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-value">1</span>; i <= <span class="code-value">5</span>; i++) {<br>
+                &nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">log</span>(i);<br>
+                }
+            </div>
+            
+            <div class="controls">
+                <button onclick="showSection('while')">Next: While Loops →</button>
+            </div>
+        </div>
+        
+        <div id="while" class="content-section">
+            <h2>While Loops</h2>
+            <p>A while loop repeats a block of code as long as a specified condition is true.</p>
+            
+            <div class="code-block">
+                <span class="code-comment">// Syntax of a while loop</span><br>
+                <span class="code-keyword">while</span> (condition) {<br>
+                &nbsp;&nbsp;<span class="code-comment">// code to be executed</span><br>
+                }
+            </div>
+            
+            <h3>Example: Countdown</h3>
+            <div class="code-block">
+                <span class="code-keyword">let</span> count = <span class="code-value">5</span>;<br>
+                <span class="code-keyword">while</span> (count > <span class="code-value">0</span>) {<br>
+                &nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">log</span>(count);<br>
+                &nbsp;&nbsp;count--;<br>
+                }<br>
+                <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-value">"Liftoff!"</span>);
+            </div>
+            
+            <div class="visualization">
+                <h3>Try It: While Loop</h3>
+                <p>Click the button to see the while loop in action:</p>
+                <button onclick="runWhileLoop()">Run While Loop</button>
+                <div class="loop-output" id="while-output">Output will appear here...</div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="showSection('intro')">← Previous</button>
+                <button onclick="showSection('for')">Next: For Loops →</button>
+            </div>
+        </div>
+        
+        <div id="for" class="content-section">
+            <h2>For Loops</h2>
+            <p>For loops are used when you know how many times you want to execute a block of code.</p>
+            
+            <div class="code-block">
+                <span class="code-comment">// Syntax of a for loop</span><br>
+                <span class="code-keyword">for</span> (initialization; condition; increment) {<br>
+                &nbsp;&nbsp;<span class="code-comment">// code to be executed</span><br>
+                }
+            </div>
+            
+            <h3>Example: Multiplication Table</h3>
+            <div class="code-block">
+                <span class="code-keyword">const</span> number = <span class="code-value">3</span>;<br>
+                <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-value">1</span>; i <= <span class="code-value">10</span>; i++) {<br>
+                &nbsp;&nbsp;<span class="code-keyword">const</span> result = number * i;<br>
+                &nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-value">`${number} × ${i} = ${result}`</span>);<br>
+                }
+            </div>
+            
+            <div class="visualization">
+                <h3>Try It: For Loop</h3>
+                <p>Click the button to see the for loop in action:</p>
+                <button onclick="runForLoop()">Run For Loop</button>
+                <div class="loop-output" id="for-output">Output will appear here...</div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="showSection('while')">← Previous</button>
+                <button onclick="showSection('dowhile')">Next: Do-While Loops →</button>
+            </div>
+        </div>
+        
+        <div id="dowhile" class="content-section">
+            <h2>Do-While Loops</h2>
+            <p>A do-while loop is similar to a while loop, but it always executes the code block at least once before checking the condition.</p>
+            
+            <div class="code-block">
+                <span class="code-comment">// Syntax of a do-while loop</span><br>
+                <span class="code-keyword">do</span> {<br>
+                &nbsp;&nbsp;<span class="code-comment">// code to be executed</span><br>
+                } <span class="code-keyword">while</span> (condition);
+            </div>
+            
+            <h3>Example: User Input Validation</h3>
+            <div class="code-block">
+                <span class="code-keyword">let</span> userInput;<br>
+                <span class="code-keyword">do</span> {<br>
+                &nbsp;&nbsp;userInput = <span class="code-function">prompt</span>(<span class="code-value">"Enter a number greater than 10:"</span>);<br>
+                } <span class="code-keyword">while</span> (userInput <= <span class="code-value">10</span>);<br>
+                <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-value">"Thank you!"</span>);
+            </div>
+            
+            <div class="visualization">
+                <h3>Try It: Do-While Loop</h3>
+                <p>Click the button to see the do-while loop in action:</p>
+                <button onclick="runDoWhileLoop()">Run Do-While Loop</button>
+                <div class="loop-output" id="dowhile-output">Output will appear here...</div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="showSection('for')">← Previous</button>
+                <button onclick="showSection('exercises')">Next: Practice Exercises →</button>
+            </div>
+        </div>
+        
+        <div id="exercises" class="content-section">
+            <h2>Practice Exercises</h2>
+            <p>Test your understanding of loops with these interactive exercises.</p>
+            
+            <div class="exercise">
+                <h3>Exercise 1: Sum of Numbers</h3>
+                <p>Write a loop that calculates the sum of numbers from 1 to 10.</p>
+                
+                <div class="code-block">
+                    <span class="code-keyword">let</span> sum = <span class="code-value">0</span>;<br>
+                    <span class="code-comment">// Write your loop here</span><br>
+                    <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-value">1</span>; i <= <span class="code-value">10</span>; i++) {<br>
+                    &nbsp;&nbsp;<input type="text" id="ex1-code" placeholder="Enter code here"><br>
+                    }<br>
+                    <span class="code-function">console</span>.<span class="code-function">log</span>(sum); <span class="code-comment">// Should output 55</span>
+                </div>
+                
+                <button onclick="checkExercise(1)">Check Answer</button>
+                <div id="ex1-result"></div>
+            </div>
+            
+            <div class="exercise">
+                <h3>Exercise 2: Multiplication Table</h3>
+                <p>Write a loop that generates the multiplication table for the number 7 (from 1 to 5).</p>
+                
+                <div class="code-block">
+                    <span class="code-keyword">const</span> num = <span class="code-value">7</span>;<br>
+                    <span class="code-comment">// Write your loop here</span><br>
+                    <span class="code-keyword">for</span> (<span class="code-keyword">let</span> i = <span class="code-value">1</span>; i <= <span class="code-value">5</span>; i++) {<br>
+                    &nbsp;&nbsp;<input type="text" id="ex2-code" placeholder="Enter code here"><br>
+                    }
+                </div>
+                
+                <button onclick="checkExercise(2)">Check Answer</button>
+                <div id="ex2-result"></div>
+            </div>
+            
+            <div class="controls">
+                <button onclick="showSection('dowhile')">← Previous</button>
+                <button onclick="showSection('intro')">Back to Start</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>LoopLearn - An Interactive E-Learning Platform</p>
+        <p>© 2023 All rights reserved</p>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active navigation button
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-target="${sectionId}"]`).classList.add('active');
+        }
+        
+        // Add event listeners to navigation buttons
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = button.getAttribute('data-target');
+                showSection(target);
+            });
+        });
+        
+        // While loop example
+        function runWhileLoop() {
+            const output = document.getElementById('while-output');
+            output.innerHTML = '';
+            
+            let count = 5;
+            while (count > 0) {
+                output.innerHTML += `Countdown: ${count}<br>`;
+                count--;
+            }
+            output.innerHTML += 'Liftoff!';
+        }
+        
+        // For loop example
+        function runForLoop() {
+            const output = document.getElementById('for-output');
+            output.innerHTML = '';
+            
+            const number = 3;
+            for (let i = 1; i <= 10; i++) {
+                const result = number * i;
+                output.innerHTML += `${number} × ${i} = ${result}<br>`;
+            }
+        }
+        
+        // Do-while loop example
+        function runDoWhileLoop() {
+            const output = document.getElementById('dowhile-output');
+            output.innerHTML = '';
+            
+            // Simulating user input with a fixed value for demonstration
+            let attempts = 0;
+            let userInput;
+            
+            do {
+                attempts++;
+                userInput = attempts === 3 ? 15 : 5; // Simulate user entering 5 twice, then 15
+                output.innerHTML += `Attempt ${attempts}: Entered ${userInput}<br>`;
+            } while (userInput <= 10);
+            
+            output.innerHTML += 'Thank you!';
+        }
+        
+        // Exercise checking
+        function checkExercise(exNumber) {
+            let resultElement, userCode, correct;
+            
+            switch(exNumber) {
+                case 1:
+                    resultElement = document.getElementById('ex1-result');
+                    userCode = document.getElementById('ex1-code').value.trim();
+                    correct = userCode === 'sum += i;' || userCode === 'sum = sum + i;';
+                    break;
+                case 2:
+                    resultElement = document.getElementById('ex2-result');
+                    userCode = document.getElementById('ex2-code').value.trim();
+                    correct = userCode === 'console.log(`${num} × ${i} = ${num * i}`);' || 
+                              userCode === 'console.log(num + " × " + i + " = " + (num * i));';
+                    break;
+            }
+            
+            if (correct) {
+                resultElement.innerHTML = '<div class="success">Correct! Well done!</div>';
+            } else {
+                resultElement.innerHTML = '<div class="error">Not quite. Try again!</div>';
+            }
+        }
+    </script>
+</body>
+</html>
