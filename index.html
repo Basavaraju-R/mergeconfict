@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnloop - Intelligent Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <header class="hero">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Learnloop</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline" onclick="showLogin()">Login</button>
+                    <button class="btn btn-primary" onclick="showRegister()">Get Started</button>
+                </div>
+            </nav>
+            
+            <div class="hero-content">
+                <h1>Intelligent Learning Platform</h1>
+                <p>Make self-directed learning smarter, more interactive, and highly personalized with AI-powered guidance.</p>
+                <div class="hero-features">
+                    <div class="feature">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-Powered Assistance</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Progress Tracking</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Personalized Schedules</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="showRegister()">Start Learning Today</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="register-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2><i class="fas fa-user-plus"></i> Create Your Account</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="reg-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="reg-age" min="13" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Qualifications</label>
+                        <select id="reg-qualifications" required>
+                            <option value="">Select your highest qualification</option>
+                            <option value="high-school">High School</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                            <option value="phd">PhD</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                      <div class="form-group">
+                        <label>Address</label>
+                        <textarea id="reg-address" rows="3" required></textarea>
+                      </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h2><i class="fas fa-sign-in-alt"></i> Welcome Back</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                <p class="auth-switch">Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goal Selection Page -->
+    <div id="goal-selection-page" class="page">
+        <div class="container">
+            <h2>Choose Your Learning Goal</h2>
+            <p>Select what you'd like to learn and we'll create a personalized weekly schedule for you.</p>
+            
+            <div class="goals-grid">
+                <div class="goal-card" onclick="selectGoal('cybersecurity')">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Cybersecurity</h3>
+                    <p>Learn ethical hacking, network security, and digital forensics</p>
+                </div>
+                <div class="goal-card" onclick="selectGoal('programming')">
+                    <i class="fas fa-code"></i>
+                    <h3>Programming</h3>
+                    <p>Master web development, mobile apps, and software engineering</p>
+                </div>
+                <div class="goal-card" onclick="selectGoal('data-science')">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Data Science</h3>
+                    <p>Explore machine learning, analytics, and AI fundamentals</p>
+                </div>
+                <div class="goal-card" onclick="selectGoal('digital-marketing')">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Digital Marketing</h3>
+                    <p>Learn SEO, social media marketing, and content strategy</p>
+                </div>
+                <div class="goal-card" onclick="selectGoal('ui-ux-design')">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>UI/UX Design</h3>
+                    <p>Create beautiful interfaces and user experiences</p>
+                </div>
+                <div class="goal-card" onclick="selectGoal('business')">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Business & Finance</h3>
+                    <p>Understand entrepreneurship, finance, and management</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page">
+        <nav class="dashboard-nav">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learnloop</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-item active" onclick="showDashboardSection('overview')">
+                    <i class="fas fa-home"></i> Overview
+                </a>
+                <a href="#" class="nav-item" onclick="showDashboardSection('schedule')">
+                    <i class="fas fa-calendar"></i> Schedule
+                </a>
+                <a href="#" class="nav-item" onclick="showDashboardSection('progress')">
+                    <i class="fas fa-chart-line"></i> Progress
+                </a>
+                <a href="#" class="nav-item" onclick="showDashboardSection('resources')">
+                    <i class="fas fa-book"></i> Resources
+                </a>
+                <a href="#" class="nav-item" onclick="showDashboardSection('assessment')">
+                    <i class="fas fa-clipboard-check"></i> Assessment
+                </a>
+            </div>
+            <div class="nav-user">
+                <span id="user-name">John Doe</span>
+                <button class="btn btn-outline btn-small" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <main class="dashboard-content">
+            <!-- Overview Section -->
+            <div id="overview-section" class="dashboard-section active">
+                <div class="welcome-card">
+                    <h2>Welcome back, <span id="welcome-name">John</span>!</h2>
+                    <p>Continue your <span id="current-goal">Programming</span> journey</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-fire"></i>
+                        <div class="stat-info">
+                            <h3 id="streak-days">7</h3>
+                            <p>Day Streak</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="stat-info">
+                            <h3 id="hours-learned">24</h3>
+                            <p>Hours Learned</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <div class="stat-info">
+                            <h3 id="completed-tasks">12</h3>
+                            <p>Tasks Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-percentage"></i>
+                        <div class="stat-info">
+                            <h3 id="progress-percent">68%</h3>
+                            <p>Course Progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="today-tasks">
+                    <h3>Today's Tasks</h3>
+                    <div class="task-list" id="today-task-list">
+                        <!-- Tasks will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Section -->
+            <div id="schedule-section" class="dashboard-section">
+                <h2>Weekly Learning Schedule</h2>
+                <div class="schedule-container">
+                    <div class="week-navigation">
+                        <button class="btn btn-outline" onclick="previousWeek()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <h3 id="current-week">Week 1: Fundamentals</h3>
+                        <button class="btn btn-outline" onclick="nextWeek()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="schedule-grid" id="schedule-grid">
+                        <!-- Schedule will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress-section" class="dashboard-section">
+                <h2>Your Learning Progress</h2>
+                <div class="progress-overview">
+                    <div class="progress-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#4CAF50" stroke-width="8" 
+                                    stroke-dasharray="283" stroke-dashoffset="90" stroke-linecap="round"/>
+                        </svg>
+                        <div class="progress-text">
+                            <span class="progress-number">68%</span>
+                            <span class="progress-label">Complete</span>
+                        </div>
+                    </div>
+                    <div class="progress-details">
+                        <h3>Course Milestones</h3>
+                        <div class="milestone-list">
+                            <div class="milestone completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Introduction to Programming</span>
+                            </div>
+                            <div class="milestone completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Variables and Data Types</span>
+                            </div>
+                            <div class="milestone current">
+                                <i class="fas fa-play-circle"></i>
+                                <span>Control Structures</span>
+                            </div>
+                            <div class="milestone">
+                                <i class="fas fa-circle"></i>
+                                <span>Functions and Methods</span>
+                            </div>
+                            <div class="milestone">
+                                <i class="fas fa-circle"></i>
+                                <span>Object-Oriented Programming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Section -->
+            <div id="resources-section" class="dashboard-section">
+                <h2>Learning Resources</h2>
+                <div class="resources-grid">
+                    <div class="resource-category">
+                        <h3><i class="fas fa-video"></i> Video Lectures</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item">
+                                <i class="fab fa-youtube"></i>
+                                <span><a href="https://www.youtube.com/watch?v=m67-bOpOoPU"> python Programming Fundamentals </a></span>
+                            </a>
+                            <a href="#" class="resource-item">
+                                <i class="fab fa-youtube"></i>
+                                <span><a href="https://www.youtube.com/watch?v=kGxSyqKbzsc">Introduction to java</a></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="resource-category">
+                        <h3><i class="fas fa-file-alt"></i> Reference Documents</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Python Programming Guide</span>
+                            </a>
+                            <a href="#" class="resource-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Data Structures Handbook</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="resource-category">
+                        <h3><i class="fas fa-code"></i> Practice Exercises</h3>
+                        <div class="resource-list">
+                            <a href="#" class="resource-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Coding Challenges - Week 1</span>
+                            </a>
+                            <a href="#" class="resource-item">
+                                <i class="fas fa-laptop-code"></i>
+                                <span>Project: Calculator App</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessment Section -->
+            <div id="assessment-section" class="dashboard-section">
+                <h2>Assessments & Exams</h2>
+                <div class="assessment-grid">
+                    <div class="assessment-card completed">
+                        <div class="assessment-header">
+                            <h3>Week 1 Quiz</h3>
+                            <span class="assessment-score">85%</span>
+                        </div>
+                        <p>Programming Basics</p>
+                        <div class="assessment-status">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Completed</span>
+                        </div>
+                    </div>
+                    <div class="assessment-card available">
+                        <div class="assessment-header">
+                            <h3>Week 2 Quiz</h3>
+                            <span class="assessment-duration">30 min</span>
+                        </div>
+                        <p>Control Structures</p>
+                        <button class="btn btn-primary" onclick="startAssessment()">Start Quiz</button>
+                    </div>
+                    <div class="assessment-card locked">
+                        <div class="assessment-header">
+                            <h3>Midterm Exam</h3>
+                            <span class="assessment-duration">90 min</span>
+                        </div>
+                        <p>Comprehensive Assessment</p>
+                        <div class="assessment-status">
+                            <i class="fas fa-lock"></i>
+                            <span>Locked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- AI Assistant -->
+    <div id="ai-assistant" class="ai-assistant">
+        <div class="ai-header">
+            <h3><i class="fas fa-robot"></i> AI Learning Assistant</h3>
+            <button class="ai-toggle" onclick="toggleAI()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="ai-chat" id="ai-chat">
+            <div class="ai-message">
+                <div class="ai-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="ai-content">
+                    <p>Hi! I'm your AI learning assistant. I can help you with questions, provide additional resources, or give personalized advice. How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="ai-input">
+            <input type="text" id="ai-input-field" placeholder="Ask me anything about your learning...">
+            <button onclick="sendAIMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- AI Assistant Toggle Button -->
+    <button id="ai-toggle-btn" class="ai-toggle-btn" onclick="toggleAI()">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
